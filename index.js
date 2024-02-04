@@ -20,9 +20,14 @@ client.on('messageCreate', async msg => {
 
     if (match) {
       const userNumber = match[1];
-      const intendedUserId = match[2].trim();
-
-      work(userNumber, msg, intendedUserId);
+      const intendedUserNick = match[2].trim();
+      if (userNumber != msg.author.id) {
+        work(userNumber, msg, intendedUserNick);
+      }
+      else {
+        msg.reply("You can't change your own nickname, silly")
+      }
+      
     } else {
       msg.reply("That didn't work :(. The syntax is $nick (user) (new nickname)");
     }
@@ -67,7 +72,6 @@ async function work(userNumber, msg, textAfterNumber) {
 async function getIntendedName(msg) {
   guild = msg.guildId;
   user = msg.author.id;
-  console.log(user)
   
   const res = await namesdb.all('SELECT Nickname FROM names WHERE GuildID = ? AND UserID = ?', guild, user)
  
