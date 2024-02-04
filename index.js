@@ -16,13 +16,11 @@ client.on('messageCreate', async msg => {
   if (msg.content.startsWith("$nick")) {
     const regex = /<@(\d+)>(.*)/;
 
-    // Use the match method to extract the number and the text after it
     const match = msg.content.match(regex);
 
-    // Check if a match is found
     if (match) {
       const userNumber = match[1];
-      const intendedUserId = match[2].trim(); // Trim to remove leading/trailing spaces
+      const intendedUserId = match[2].trim();
 
       work(userNumber, msg, intendedUserId);
     } else {
