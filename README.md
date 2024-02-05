@@ -1,6 +1,8 @@
 # Nickbot
 A discord bot that allows others to change your name, but does not allow people to change their own
-
+```
+$nick @user nickname
+```
 ## Install
 Create the sqlite3 database
 ```sql
